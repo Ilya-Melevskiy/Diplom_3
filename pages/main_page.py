@@ -1,6 +1,5 @@
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
-from selenium.webdriver.support.wait import WebDriverWait
 import allure
 
 from core.urls import MAIN_PAGE_URL
@@ -76,7 +75,7 @@ class MainPage(BasePage):
     
     @allure.step('Получить id заказа из окна "Заказ создан"')
     def get_id_order(self):
-        WebDriverWait(self.driver, 5).until(lambda driver: self.text(self.ID_ORDER) != '9999')
+        self.wait_text_locator_is_not_equal_text(self.ID_ORDER, '9999')
         return self.text(self.ID_ORDER)
     
 

@@ -28,6 +28,9 @@ class BasePage:
     def wait_url(self, url):
         WebDriverWait(self.driver, 5).until(EC.url_to_be(url))
 
+    def wait_text_locator_is_not_equal_text(self, locator, text):
+        WebDriverWait(self.driver, 5).until(lambda driver: self.text(locator) != text)
+
     def find_element(self, locator): 
         self.wait_visibility(locator)
         return self.driver.find_element(*locator)
