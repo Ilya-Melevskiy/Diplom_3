@@ -1,33 +1,10 @@
 import pytest
 import requests
-from selenium import webdriver
-from selenium.webdriver.firefox.options import Options as FirefoxOptions
-from selenium.webdriver.chrome.options import Options as ChromeOptions
 
+from core.browser_factory import BrowserFactory
 from pages.main_page import MainPage
 from core.helpers import Helpers
 from core.urls import CREATE_USER, DEL_USER, LOGIN_USER
-
-
-class BrowserFactory:
-
-    @staticmethod
-    def get_driver(browser_name: str, headless: bool = False): 
-        if browser_name.lower() == 'chrome':
-            options = ChromeOptions()
-            options.add_argument('--window-size=1920,1080')
-            if headless:
-                options.add_argument('--headless')
-            return webdriver.Chrome(options=options) 
-        elif browser_name.lower() == 'firefox':
-            options = FirefoxOptions()
-            options.add_argument('--width=1920')
-            options.add_argument('--height=1080')
-            if headless:
-                options.add_argument('--headless')
-            return webdriver. Firefox (options=options)
-        else:
-            raise ValueError(f'Browser {browser_name} is not supported.')
 
 
 @pytest.fixture(params=['chrome', 'firefox'])
