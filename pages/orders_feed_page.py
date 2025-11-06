@@ -3,7 +3,7 @@ import allure
 
 from core.urls import ORDERS_FEED_PAGE_URL
 from pages.base_page import BasePage
-from pages.components import HeaderPage
+from pages.components import HeaderComponent
 
 
 class OrdersFeedPage(BasePage):
@@ -15,7 +15,7 @@ class OrdersFeedPage(BasePage):
 
     def __init__(self, driver):
         super().__init__(driver)
-        self.header = HeaderPage(driver)
+        self.header = HeaderComponent(driver)
 
     @allure.step(f'Открыть страницу {ORDERS_FEED_PAGE_URL}')
     def open(self):
